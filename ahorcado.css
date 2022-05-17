@@ -6,57 +6,63 @@ body{
 }
 
 main{
-    border: 5px solid red;
+   /* border: 5px solid red;*/
     display: grid;
     grid-template-columns:5% 95%;
 
 }
 
     #logoAlura{
-        border:5px dotted rgb(244, 87, 87);
+        /*border:5px dotted rgb(244, 87, 87);*/
         box-sizing: content-box;
-        margin-left: 25px;
-        margin-top: 25px;
+        margin-left:50px;
+        margin-top: 50px;
         position: relative;
     }
 
-    #mainButtons{
-        border: 5px dashed orange ;
+    #mainDisplay{
+       /* border: 5px dashed orange ;*/
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 650px;
+        height: 680px;
         gap: 20px;
     }
 
         #iniciarJuego{
-            background-color: #0A3871;
-            color: #ffffff;
-            border-radius: 24px;
             width: 317px;
             height: 114px;
-            border: none;
-            font-size: 18px;
-            font-weight: 400;
-            font-family: 'Inter', sans-serif;
-            font-style: normal;
-            border: 1px solid #0A3871;
-
         }
+
+            .blueButton{
+                background-color: #0A3871;
+                color: #ffffff;
+                font-size: 18px;
+                font-weight: 400;
+                font-family: 'Inter', sans-serif;
+                font-style: normal;
+                border: 1px solid #0A3871;
+                border-radius: 24px;
+            }
 
         #nuevaPalabra{
-            background-color: #F3F5FC;
-            border-radius: 24px;
             width: 280px;
             height: 57px;
-            border: 1px solid #0A3871;
-            font-size: 16px;
-            color: #0A3871;
         }
 
+            .greyButton{
+                background-color: #F3F5FC;
+                border-radius: 24px;
+                border: 1px solid #0A3871;
+                font-size: 16px;
+                color: #0A3871;
+            }
+
+
+
 footer{
-    border: 5px solid blue;
+    /*border: 5px solid blue;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,4 +70,5 @@ footer{
     font-weight: bold;
     font-size: 28px;
     gap: 15px;
+    padding-left: 5%;
 }
