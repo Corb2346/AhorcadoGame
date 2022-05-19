@@ -65,13 +65,28 @@ main{
         #saveCancelNewWord{
             visibility:collapse;
             border: 5px solid red;
-            /*display:grid;
-            grid-template-rows: 25% 15% 60%;*/
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            
+        }
+
+            #adviceDiv{
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               gap: 8px;
+            }
+
+            .inputBox{
+                outline:none;
+            }
+            .inputBox::placeholder{
+                color:#0A3871;
+            }
+
+        #nuevoJuego{
+            visibility: collapse;
         }
 
 footer{

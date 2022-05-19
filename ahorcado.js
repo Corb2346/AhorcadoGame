@@ -10,22 +10,27 @@ let guardarRemplazarbtn = document.getElementById("guardarRemplazarbtn");
 let cancelarBtn = document.getElementById("cancelarBtn");
 let saveCancelNewWord = document.getElementById("saveCancelNewWord");
 
+let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
+let desistirBtn = document.getElementById("desistirBtn");
+
 iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
 agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
+desistirBtn.addEventListener("click",returnMenu);
 
 function displayIniciarJuego(){
     console.log("ya sirvo tambien");
-    /*agregarPalabraBtn.style.visibility = "collapse";
-    iniciarJuegoBtn.style.visibility = "collapse";*/
+    agregarPalabraBtn.style.visibility = "collapse";
+    iniciarJuegoBtn.style.visibility = "collapse";
+    btnNuevoJuego();
+    btnDesistir();
+
 }
 
 function diplayMenuAgregarPalabra(){
     console.log("ya sirvo");
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
-   /* agregarPalabraBtn.remove();
-    iniciarJuegoBtn.remove();*/
-    
+
     inputFrase();
     adviceMessage()
     btnGuardarReemplazar();
@@ -67,7 +72,7 @@ function inputFrase(){
     inputFrases.style.fontSize ="32px";
     inputFrases.style.position ="absolute";
     inputFrases.style.top = "20%";
-    inputFrases.style.left ="20%";
+    inputFrases.style.left ="28%";
 }
 
 function adviceMessage(){
@@ -75,8 +80,31 @@ function adviceMessage(){
     adviceDiv.style.visibility = "visible";
     adviceDiv.style.position ="absolute";
     adviceDiv.style.top ="70%";
-  
+    adviceDiv.style.left ="30%";
+    adviceDiv.style.opacity=".8";
+    adviceDiv.style.color="#495057";
+    adviceDiv.style.fontFamily ="'Inter', sans-serif";
 
+}
+
+function btnNuevoJuego(){
+    nuevoJuegoBtn.classList.add("blueButton");
+    nuevoJuegoBtn.style.height ="67px";
+    nuevoJuegoBtn.style.width = "332px";
+    nuevoJuegoBtn.style.visibility="visible";
+    nuevoJuegoBtn.style.position ="absolute";
+    nuevoJuegoBtn.style.top ="80%";
+    nuevoJuegoBtn.style.left="28%";
+
+}
+
+function  btnDesistir(){
+    desistirBtn.classList.add("greyButton");
+    desistirBtn.style.height ="67px";
+    desistirBtn.style.width = "332px";
+    desistirBtn.style.visibility="visible";
+    desistirBtn.style.position ="absolute";
+    desistirBtn.style.top ="80%";
 }
 
 function returnMenu(){
@@ -105,6 +133,12 @@ function returnMenu(){
 
     let saveCancelBtn= document.getElementById("saveCancelBtn");
     saveCancelBtn.style.visibility = "collapse";
+
+    let desistirBtn = document.getElementById("desistirBtn");
+    desistirBtn.style.visibility = "collapse";
+
+    let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
+    nuevoJuegoBtn.style.visibility = "collapse";
 
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 
