@@ -1,4 +1,7 @@
 /*seleccionar elementos del html*/
+let palabrasAhorcado = ["java","html","css","alura","odin","oracle","react","visual"];
+
+let body = document.querySelector("body");
 let iniciarJuegoBtn = document.querySelector("#iniciarJuego");
 let agregarPalabraBtn = document.querySelector("#nuevaPalabra");
 
@@ -9,13 +12,25 @@ let saveCancelBtn = document.getElementById("saveCancelBtn");
 let guardarRemplazarbtn = document.getElementById("guardarRemplazarbtn");
 let cancelarBtn = document.getElementById("cancelarBtn");
 let saveCancelNewWord = document.getElementById("saveCancelNewWord");
+let muestrPalabraPantalla = document.getElementById("muestraPalabraPantalla");
 
+let nuevoJuegoDiv = document.getElementById("nuevoJuego");
 let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
 let desistirBtn = document.getElementById("desistirBtn");
+
 
 iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
 agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 desistirBtn.addEventListener("click",returnMenu);
+guardarRemplazarbtn.addEventListener("click",reciveFrase);
+inputFrases.addEventListener("click",inputWord);
+/*body.addEventListener("click",bodyclick);*/
+
+function numeroAleatorio(){
+
+    let numberRandom = Math.floor(Math.random()*palabrasAhorcado.length);
+    return numberRandom;
+}
 
 function displayIniciarJuego(){
     console.log("ya sirvo tambien");
@@ -23,7 +38,9 @@ function displayIniciarJuego(){
     iniciarJuegoBtn.style.visibility = "collapse";
     btnNuevoJuego();
     btnDesistir();
-
+    console.log(numeroAleatorio());
+    console.log(muestrPalabra(numeroAleatorio()));
+    muestrPalabraPantalla.style.visibility="visible";
 }
 
 function diplayMenuAgregarPalabra(){
@@ -40,9 +57,8 @@ function diplayMenuAgregarPalabra(){
 function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la opcion agregar palabra
 
     guardarRemplazarbtn = document.getElementById("guardarRemplazarbtn");
-    guardarRemplazarbtn.style.height ="67px";
-    guardarRemplazarbtn.style.width = "332px";
     guardarRemplazarbtn.classList.add("blueButton");
+    guardarRemplazarbtn.classList.add("sizeButton");
     guardarRemplazarbtn.style.visibility ="visible";
     guardarRemplazarbtn.style.position = "absolute"
     guardarRemplazarbtn.style.top ="75%";
@@ -51,8 +67,7 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
     
     cancelarBtn = document.getElementById("cancelarBtn");
     cancelarBtn.classList.add("greyButton");
-    cancelarBtn.style.height ="67px";
-    cancelarBtn.style.width = "332px";
+    cancelarBtn.classList.add("sizeButton");
     cancelarBtn.style.position = "absolute"
     cancelarBtn.style.top ="75%";
     cancelarBtn.style.visibility ="visible";
@@ -64,9 +79,10 @@ function inputFrase(){
 
     inputFrases = document.getElementById("inputFrase");
     inputFrases.style.visibility ="visible";
-    inputFrases.style.width ="299px";
+    inputFrases.style.width ="350px";
     inputFrases.style.height ="48px";
     inputFrases.style.border ="none";
+    inputFrases.value = "Ingresa Palabra aqui"
     inputFrases.style.backgroundColor ="#F3F5FC";
     inputFrases.style.color = "#0A3871";
     inputFrases.style.fontSize ="32px";
@@ -89,8 +105,7 @@ function adviceMessage(){
 
 function btnNuevoJuego(){
     nuevoJuegoBtn.classList.add("blueButton");
-    nuevoJuegoBtn.style.height ="67px";
-    nuevoJuegoBtn.style.width = "332px";
+    nuevoJuegoBtn.classList.add("sizeButton");
     nuevoJuegoBtn.style.visibility="visible";
     nuevoJuegoBtn.style.position ="absolute";
     nuevoJuegoBtn.style.top ="80%";
@@ -100,8 +115,7 @@ function btnNuevoJuego(){
 
 function  btnDesistir(){
     desistirBtn.classList.add("greyButton");
-    desistirBtn.style.height ="67px";
-    desistirBtn.style.width = "332px";
+    desistirBtn.classList.add("sizeButton");
     desistirBtn.style.visibility="visible";
     desistirBtn.style.position ="absolute";
     desistirBtn.style.top ="80%";
@@ -140,6 +154,68 @@ function returnMenu(){
     let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
     nuevoJuegoBtn.style.visibility = "collapse";
 
+    let muestrPalabraPantalla = document.getElementById("muestrPalabraPantalla");
+    muestrPalabraPantalla.style.visibility = "collapse";
+    
+
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 
 }
+
+//operative functions
+
+function inputWord(event){ //al dar clic en el rectangulo para meter datos elimina la frase 
+console.log(event);
+console.log(event.pointerId);
+if(event.pointerId === 1){
+    console.log("detecto click");
+    document.getElementById("inputFrase").value="";
+} 
+
+}
+
+function reciveFrase(){
+    let palabra = inputFrases.value;
+    console.log(palabra);
+    if(palabra === "Ingresa Palabra aqui" || palabra === ""){
+        inputFrases.value = "Ingresa Palabra aqui";
+        console.log("no entro en el array");
+    } else 
+    if(palabra !="Ingresa Palabra aqui"){
+        console.log(palabra);
+    palabrasAhorcado.push(palabra);
+    console.log(palabrasAhorcado);
+    inputFrases.value = "Ingresa Palabra aqui";
+    btnNuevoJuego();
+    btnDesistir();
+    nuevoJuego.style.visibility="visible";
+
+    console.log(numeroAleatorio());
+    console.log(muestrPalabra(numeroAleatorio()));
+
+    let inputFrase = document.getElementById("inputFrase");
+    inputFrase.style.visibility = "collapse";
+
+    let adviceDiv = document.getElementById("adviceDiv");
+    adviceDiv.style.visibility = "collapse";
+
+    let guardarRemplazarbtn= document.getElementById("guardarRemplazarbtn");
+    guardarRemplazarbtn.style.visibility = "collapse";
+
+    let cancelarBtn= document.getElementById("cancelarBtn");
+    cancelarBtn.style.visibility = "collapse";
+
+    } 
+
+
+}
+
+//funcion que muestra en pantalla letra obtenida del arreglo
+
+function muestrPalabra(numberRandom){
+    let numeroAleatorio = numberRandom;
+    let palabra = palabrasAhorcado[numeroAleatorio];
+    console.log(palabra);
+    return palabra;
+}
+
