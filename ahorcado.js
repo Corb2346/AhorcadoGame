@@ -1,6 +1,6 @@
 /*seleccionar elementos del html*/
-let palabrasAhorcado = ["java","script","html","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend"];
-
+let palabrasAhorcado = ["java","script","html","xbox","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend"];//arreglo con palabras iniciales
+//elementos del html
 let body = document.querySelector("body");
 let iniciarJuegoBtn = document.querySelector("#iniciarJuego");
 let agregarPalabraBtn = document.querySelector("#nuevaPalabra");
@@ -20,8 +20,7 @@ let desistirBtn = document.getElementById("desistirBtn");
 let ahorcadoDiv = document.getElementById("ahorcadoDiv");
 let canvasDiv = document.querySelector("canvas");
 
-
-
+//action buttons
 iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
 agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 desistirBtn.addEventListener("click",returnMenu);
@@ -29,15 +28,17 @@ guardarRemplazarbtn.addEventListener("click",reciveFrase);
 inputFrases.addEventListener("click",inputWord);
 nuevoJuegoBtn.addEventListener("click",nuevoJuego);
 
-function numeroAleatorio(){
+window.addEventListener('keydown', function (e) {//detecta tecla presionada
+    console.log(e);
+  }, false);
+
+function numeroAleatorio(){//funcion que devuelve un numero aleatorio tamaño maximo del arreglo
 
     let numberRandom = Math.floor(Math.random()*palabrasAhorcado.length);
     return numberRandom;
 }
 
-
-
-function displayIniciarJuego(){
+function displayIniciarJuego(){ 
     console.log("ya sirvo tambien");
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
@@ -311,8 +312,6 @@ function muestraLineas(palabra){
 function palabraCaracteres(palabra){
     let caracteres = palabra.split('');
     console.log(caracteres);
-    /*let carateresNocoma = caracteres.replace(/,/g, '');
-    console.log(carateresNocoma);*/
     return caracteres;
 }
 
