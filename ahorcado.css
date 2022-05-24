@@ -90,7 +90,7 @@ main{
                 color:#0A3871;
             }
 
-        #nuevoJuego{
+        #nuevoJuegoDiv{
             visibility: collapse;
         }
 
@@ -128,10 +128,9 @@ main{
 
                 canvas{
                     visibility: collapse;
-                    background-color: rgb(255, 255, 255);
                     position: absolute;
                     top: 65%;
-                    left: 35%;
+                    left: 30%;
                 }
 
 footer{

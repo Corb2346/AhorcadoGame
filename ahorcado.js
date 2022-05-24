@@ -14,7 +14,7 @@ let cancelarBtn = document.getElementById("cancelarBtn");
 let saveCancelNewWord = document.getElementById("saveCancelNewWord");
 let muestrPalabraPantalla = document.getElementById("muestraPalabraPantalla");
 
-let nuevoJuegoDiv = document.getElementById("nuevoJuego");
+let nuevoJuegoDiv = document.getElementById("nuevoJuegoDiv");
 let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
 let desistirBtn = document.getElementById("desistirBtn");
 let ahorcadoDiv = document.getElementById("ahorcadoDiv");
@@ -27,8 +27,7 @@ agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 desistirBtn.addEventListener("click",returnMenu);
 guardarRemplazarbtn.addEventListener("click",reciveFrase);
 inputFrases.addEventListener("click",inputWord);
-nuevoJuegoBtn.addEventListener("click",displayIniciarJuego);
-/*body.addEventListener("click",bodyclick);*/
+nuevoJuegoBtn.addEventListener("click",nuevoJuego);
 
 function numeroAleatorio(){
 
@@ -42,17 +41,43 @@ function displayIniciarJuego(){
     console.log("ya sirvo tambien");
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
+
     ahorcadoDiv.style.visibility = "visible";
-    ahorcadoDiv.style.border ="5px";
-    ahorcadoDiv.style.borderColor="red";
     canvasDiv.style.visibility = "visible";
+
 
     btnNuevoJuego();
     btnDesistir();
-   
 
-
+    let recibePalabra = muestrPalabra(numeroAleatorio());
+    console.log(recibePalabra);
+    muestrPalabraPantalla.style.visibility="visible";
     
+    let muestraCaracteres = palabraCaracteres(recibePalabra);
+    muestrPalabraPantalla.value =  muestraCaracteres;
+    muestrPalabraPantalla.style.textDecoration ="underline";
+    muestrPalabraPantalla.style.textDecorationThickness= "4px";
+    muestrPalabraPantalla.style.text= "4px";
+    
+    muestraLineas(recibePalabra.toUpperCase())
+    let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
+    console.log(numeroLineas);
+    dibujarLineas(numeroLineas);
+    
+}
+
+function nuevoJuego(){
+    let canvasDiv = document.querySelector("canvas");
+    let pincel = canvasDiv.getContext("2d"); 
+    pincel.clearRect(0,0,750,10);
+
+    ahorcadoDiv.style.visibility = "visible";
+    canvasDiv.style.visibility = "visible";
+
+
+    btnNuevoJuego();
+    btnDesistir();
+
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
     muestrPalabraPantalla.style.visibility="visible";
@@ -145,6 +170,7 @@ function  btnDesistir(){
     desistirBtn.style.visibility="visible";
     desistirBtn.style.position ="absolute";
     desistirBtn.style.top ="80%";
+    
 }
 
 function returnMenu(){
@@ -182,8 +208,18 @@ function returnMenu(){
 
     muestrPalabraPantalla.style.visibility="collapse";
     
+    let ahorcadoDiv = document.getElementById("ahorcadoDiv");
+    ahorcadoDiv.style.visibility="collapse";
 
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
+
+
+
+    let canvasDiv = document.querySelector("canvas");
+    canvasDiv.style.visibility ="collapse";
+
+    let pincel = canvasDiv.getContext("2d"); 
+    pincel.clearRect(0,0,750,10);
 
 }
 
@@ -213,7 +249,7 @@ function reciveFrase(){
     inputFrases.value = "Ingresa Palabra aqui";
     btnNuevoJuego();
     btnDesistir();
-    nuevoJuego.style.visibility="visible";
+    nuevoJuegoDiv.style.visibility="visible";
     muestrPalabraPantalla.style.visibility="visible";
 
     console.log(numeroAleatorio());
@@ -231,6 +267,24 @@ function reciveFrase(){
     let cancelarBtn= document.getElementById("cancelarBtn");
     cancelarBtn.style.visibility = "collapse";
 
+
+    ahorcadoDiv.style.visibility = "visible";
+    canvasDiv.style.visibility = "visible";
+
+    let recibePalabra = muestrPalabra(numeroAleatorio());
+    console.log(recibePalabra);
+    muestrPalabraPantalla.style.visibility="visible";
+    let muestraCaracteres = palabraCaracteres(recibePalabra);
+    muestrPalabraPantalla.value =  muestraCaracteres;
+    muestrPalabraPantalla.style.textDecoration ="underline";
+    muestrPalabraPantalla.style.textDecorationThickness= "4px";
+    muestrPalabraPantalla.style.text= "4px";
+   
+    muestraLineas(recibePalabra.toUpperCase())
+
+    let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
+    console.log(numeroLineas);
+    dibujarLineas(numeroLineas);
     } 
 
 
@@ -262,31 +316,35 @@ function palabraCaracteres(palabra){
     return caracteres;
 }
 
-function dibujarLineas(numeroLineas){
-    /*let i = 0;
+function dibujarLineas(numeroLineas){ //hacer que dibuje lineas automatico 
+    let i = 0;
     let widthLine = 80;
     let start = 5;
-    let star2 = 6; 
+     
     
-    do{*/
+    do{
     
     let canvasDiv = document.querySelector("canvas");
     let pincel = canvasDiv.getContext("2d");
     pincel.strokeStyle = '#0A3871';
     pincel.lineWidth = 5;
     pincel.lineCap = "round";
-    pincel.beginPath();
-    pincel.moveTo(5,6);
-    pincel.lineTo(80,6);
-    pincel.stroke();
 
+    drawLine(start,widthLine);
+
+       i++;
+        widthLine = widthLine +90;
+        start = start+90;
+
+    } while(i < numeroLineas);
+}
+
+function drawLine(start,width){
+    let canvasDiv = document.querySelector("canvas");
+    let pincel = canvasDiv.getContext("2d");
+    pincel.strokeStyle = '#0A3871';
     pincel.beginPath();
-    pincel.moveTo(90,6);
-    pincel.lineTo(170,6);
+    pincel.moveTo(start,6);
+    pincel.lineTo(width,6);
     pincel.stroke();
-     /*  i++;
-        widthLine = widthLine +80;
-        star2 = star2 + 7;
-        start = start+7;
-    } while(i <= numeroLineas);*/
 }
