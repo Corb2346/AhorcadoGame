@@ -3,7 +3,8 @@ body{
     margin: 0;
     padding: 0;
     height: 100%;
-}
+    width:auto;
+    }
 
 main{
    /* border: 5px solid red;*/
@@ -95,8 +96,42 @@ main{
 
                 #muestraPalabraPantalla{
                     visibility: collapse;
-                    border: none;
-                    background-color: green;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-25%);
+                    font-size: 80px;
+                    font-weight: 400;
+                    font-family: 'Inter', sans-serif;
+                    font-style: normal;
+                    color:#0A3871;
+                    background-color: #F3F5FC;
+                    border: 2px;
+                    border-top: none;
+                    border-left: none;
+                    border-right: none;
+                    outline: none;
+                    border-bottom: #0A3871;
+
+                    
+                    /*letter-spacing: 5px;
+                    border-bottom: #0A3871;
+                    border: 5px;
+                    border-radius: 5px;*/
+                }
+
+                #ahorcadoDiv{
+                    visibility: collapse;
+                  
+               
+                }
+
+                canvas{
+                    visibility: collapse;
+                    background-color: rgb(255, 255, 255);
+                    position: absolute;
+                    top: 65%;
+                    left: 35%;
                 }
 
 footer{
@@ -109,3 +144,4 @@ footer{
     gap: 15px;
     padding-left: 5%;
 }
+

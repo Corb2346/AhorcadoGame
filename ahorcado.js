@@ -1,5 +1,5 @@
 /*seleccionar elementos del html*/
-let palabrasAhorcado = ["java","html","css","alura","odin","oracle","react","visual"];
+let palabrasAhorcado = ["java","script","html","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend"];
 
 let body = document.querySelector("body");
 let iniciarJuegoBtn = document.querySelector("#iniciarJuego");
@@ -17,6 +17,9 @@ let muestrPalabraPantalla = document.getElementById("muestraPalabraPantalla");
 let nuevoJuegoDiv = document.getElementById("nuevoJuego");
 let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
 let desistirBtn = document.getElementById("desistirBtn");
+let ahorcadoDiv = document.getElementById("ahorcadoDiv");
+let canvasDiv = document.querySelector("canvas");
+
 
 
 iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
@@ -24,6 +27,7 @@ agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 desistirBtn.addEventListener("click",returnMenu);
 guardarRemplazarbtn.addEventListener("click",reciveFrase);
 inputFrases.addEventListener("click",inputWord);
+nuevoJuegoBtn.addEventListener("click",displayIniciarJuego);
 /*body.addEventListener("click",bodyclick);*/
 
 function numeroAleatorio(){
@@ -32,15 +36,37 @@ function numeroAleatorio(){
     return numberRandom;
 }
 
+
+
 function displayIniciarJuego(){
     console.log("ya sirvo tambien");
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
+    ahorcadoDiv.style.visibility = "visible";
+    ahorcadoDiv.style.border ="5px";
+    ahorcadoDiv.style.borderColor="red";
+    canvasDiv.style.visibility = "visible";
+
     btnNuevoJuego();
     btnDesistir();
-    console.log(numeroAleatorio());
-    console.log(muestrPalabra(numeroAleatorio()));
+   
+
+
+    
+    let recibePalabra = muestrPalabra(numeroAleatorio());
+    console.log(recibePalabra);
     muestrPalabraPantalla.style.visibility="visible";
+    
+    let muestraCaracteres = palabraCaracteres(recibePalabra);
+    muestrPalabraPantalla.value =  muestraCaracteres;
+    muestrPalabraPantalla.style.textDecoration ="underline";
+    muestrPalabraPantalla.style.textDecorationThickness= "4px";
+    muestrPalabraPantalla.style.text= "4px";
+    
+    muestraLineas(recibePalabra.toUpperCase())
+    let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
+    console.log(numeroLineas);
+    dibujarLineas(numeroLineas);
 }
 
 function diplayMenuAgregarPalabra(){
@@ -154,8 +180,7 @@ function returnMenu(){
     let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
     nuevoJuegoBtn.style.visibility = "collapse";
 
-    let muestrPalabraPantalla = document.getElementById("muestrPalabraPantalla");
-    muestrPalabraPantalla.style.visibility = "collapse";
+    muestrPalabraPantalla.style.visibility="collapse";
     
 
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
@@ -189,6 +214,7 @@ function reciveFrase(){
     btnNuevoJuego();
     btnDesistir();
     nuevoJuego.style.visibility="visible";
+    muestrPalabraPantalla.style.visibility="visible";
 
     console.log(numeroAleatorio());
     console.log(muestrPalabra(numeroAleatorio()));
@@ -219,3 +245,48 @@ function muestrPalabra(numberRandom){
     return palabra;
 }
 
+function muestraLineas(palabra){
+    let lineasPalabra = palabra.length;
+    console.log(lineasPalabra);
+    let palabraCaracteres = palabra.split('');
+    console.log(palabraCaracteres);
+
+    return lineasPalabra;
+}
+
+function palabraCaracteres(palabra){
+    let caracteres = palabra.split('');
+    console.log(caracteres);
+    /*let carateresNocoma = caracteres.replace(/,/g, '');
+    console.log(carateresNocoma);*/
+    return caracteres;
+}
+
+function dibujarLineas(numeroLineas){
+    /*let i = 0;
+    let widthLine = 80;
+    let start = 5;
+    let star2 = 6; 
+    
+    do{*/
+    
+    let canvasDiv = document.querySelector("canvas");
+    let pincel = canvasDiv.getContext("2d");
+    pincel.strokeStyle = '#0A3871';
+    pincel.lineWidth = 5;
+    pincel.lineCap = "round";
+    pincel.beginPath();
+    pincel.moveTo(5,6);
+    pincel.lineTo(80,6);
+    pincel.stroke();
+
+    pincel.beginPath();
+    pincel.moveTo(90,6);
+    pincel.lineTo(170,6);
+    pincel.stroke();
+     /*  i++;
+        widthLine = widthLine +80;
+        star2 = star2 + 7;
+        start = start+7;
+    } while(i <= numeroLineas);*/
+}
