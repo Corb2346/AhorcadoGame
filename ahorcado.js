@@ -18,7 +18,9 @@ let nuevoJuegoDiv = document.getElementById("nuevoJuegoDiv");
 let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
 let desistirBtn = document.getElementById("desistirBtn");
 let ahorcadoDiv = document.getElementById("ahorcadoDiv");
-let canvasDiv = document.getElementById("canvasLines");
+
+let palabrasCorrectas = document.getElementById("palabrasCorrectas");
+let palabrasEquivocadas = document.getElementById("palabrasEquivocadas");
 
 //action buttons
 iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
@@ -49,61 +51,44 @@ function displayIniciarJuego(){
     iniciarJuegoBtn.style.visibility = "collapse";
 
     ahorcadoDiv.style.visibility = "visible";
-    canvasDiv.style.visibility = "visible";
 
+    palabrasCorrectas.style.visibility = "visible";
+    palabrasEquivocadas.style.visibility = "visible";
 
     btnNuevoJuego();
     btnDesistir();
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
-    muestrPalabraPantalla.style.visibility="visible";
-    
-    let muestraCaracteres = palabraCaracteres(recibePalabra);
-    muestrPalabraPantalla.value =  muestraCaracteres;
-    muestrPalabraPantalla.style.textDecoration ="underline";
-    muestrPalabraPantalla.style.textDecorationThickness= "4px";
-    muestrPalabraPantalla.style.text= "4px";
-    
-    muestraLineas(recibePalabra.toUpperCase());
-    let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
 
-    console.log(numeroLineas);
-    dibujarLineas(numeroLineas);
+    let muestraCaracteres = palabraCaracteres(recibePalabra);
+   
+    muestraLineas(recibePalabra.toUpperCase());
 
     ahorcadoDibujo();
     
 }
 
 function nuevoJuego(){
-    let canvasDiv = document.getElementById("canvasLines");
-    let pincel = canvasDiv.getContext("2d"); 
-    pincel.clearRect(0,0,750,10);
 
     ahorcadoDiv.style.visibility = "visible";
-    canvasDiv.style.visibility = "visible";
-
-
+    
+    palabrasCorrectas.style.visibility = "visible";
+    palabrasEquivocadas.style.visibility = "visible";
+    
     btnNuevoJuego();
     btnDesistir();
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
-    muestrPalabraPantalla.style.visibility="visible";
+   
     
     let muestraCaracteres = palabraCaracteres(recibePalabra);
-    muestrPalabraPantalla.value =  muestraCaracteres;
-    muestrPalabraPantalla.style.textDecoration ="underline";
-    muestrPalabraPantalla.style.textDecorationThickness= "4px";
-    muestrPalabraPantalla.style.text= "4px";
-    
-    muestraLineas(recibePalabra.toUpperCase())
+   
     let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
     
     console.log(numeroLineas);
-    dibujarLineas(numeroLineas);
 
-    
 }
 
 function diplayMenuAgregarPalabra(){
@@ -134,6 +119,7 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
     cancelarBtn.style.position = "absolute"
     cancelarBtn.style.top ="75%";
     cancelarBtn.style.visibility ="visible";
+    
 
     cancelarBtn.addEventListener("click",returnMenu);
 }
@@ -170,9 +156,6 @@ function btnNuevoJuego(){
     nuevoJuegoBtn.classList.add("blueButton");
     nuevoJuegoBtn.classList.add("sizeButton");
     nuevoJuegoBtn.style.visibility="visible";
-    nuevoJuegoBtn.style.position ="absolute";
-    nuevoJuegoBtn.style.top ="80%";
-    nuevoJuegoBtn.style.left="28%";
 
 }
 
@@ -180,8 +163,7 @@ function  btnDesistir(){
     desistirBtn.classList.add("greyButton");
     desistirBtn.classList.add("sizeButton");
     desistirBtn.style.visibility="visible";
-    desistirBtn.style.position ="absolute";
-    desistirBtn.style.top ="80%";
+
     
 }
 
@@ -218,20 +200,14 @@ function returnMenu(){
     let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
     nuevoJuegoBtn.style.visibility = "collapse";
 
-    muestrPalabraPantalla.style.visibility="collapse";
-    
     let ahorcadoDiv = document.getElementById("ahorcadoDiv");
     ahorcadoDiv.style.visibility="collapse";
 
+    
+    palabrasCorrectas.style.visibility = "collapse";
+    palabrasEquivocadas.style.visibility = "collapse";
+
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
-
-
-
-    let canvasDiv = document.getElementById("canvasLines");
-    canvasDiv.style.visibility ="collapse";
-
-    let pincel = canvasDiv.getContext("2d"); 
-    pincel.clearRect(0,0,750,10);
 
 }
 
@@ -262,7 +238,6 @@ function reciveFrase(){
     btnNuevoJuego();
     btnDesistir();
     nuevoJuegoDiv.style.visibility="visible";
-    muestrPalabraPantalla.style.visibility="visible";
 
     console.log(numeroAleatorio());
     console.log(muestrPalabra(numeroAleatorio()));
@@ -281,22 +256,20 @@ function reciveFrase(){
 
 
     ahorcadoDiv.style.visibility = "visible";
-    canvasDiv.style.visibility = "visible";
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
-    muestrPalabraPantalla.style.visibility="visible";
-    let muestraCaracteres = palabraCaracteres(recibePalabra);
-    muestrPalabraPantalla.value =  muestraCaracteres;
-    muestrPalabraPantalla.style.textDecoration ="underline";
-    muestrPalabraPantalla.style.textDecorationThickness= "4px";
-    muestrPalabraPantalla.style.text= "4px";
    
-    muestraLineas(recibePalabra.toUpperCase())
+    let muestraCaracteres = palabraCaracteres(recibePalabra);
+    
+    muestraLineas(recibePalabra.toUpperCase());
 
-    let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
-    console.log(numeroLineas);
-    dibujarLineas(numeroLineas);
+    
+    palabrasCorrectas.style.visibility = "visible";
+    palabrasEquivocadas.style.visibility = "visible";
+
+    ahorcadoDibujo();
+
     } 
 
 
@@ -337,38 +310,6 @@ function palabraCaracteres(palabra){
     return caracteres;
 }
 
-function dibujarLineas(numeroLineas){ //hacer que dibuje lineas automatico 
-    let i = 0;
-    let widthLine = 80;
-    let start = 5;
-    
-    do{
-    
-    let canvasDiv = document.getElementById("canvasLines");
-    let pincel = canvasDiv.getContext("2d");
-    pincel.strokeStyle = '#0A3871';
-    pincel.lineWidth = 5;
-    pincel.lineCap = "round";
-
-    drawLine(start,widthLine);
-
-        i++;
-        widthLine = widthLine +90;
-        start = start+90;
-
-    } while(i < numeroLineas);
-}
-
-function drawLine(start,width){
-    let canvasDiv = document.getElementById("canvasLines");
-    let pincel = canvasDiv.getContext("2d");
-    pincel.strokeStyle = '#0A3871';
-    pincel.beginPath();
-    pincel.moveTo(start,6);
-    pincel.lineTo(width,6);
-    pincel.stroke();
-}
-
 function ahorcadoDibujo(){
 
     let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
@@ -404,9 +345,9 @@ function ahorcadoDibujo(){
     pincel2.lineTo(200,50);
     pincel2.stroke();
 
-    pincel2.beginPath();//dibuja cabeza
     pincel2.lineWidth = 3;
-    pincel2.arc(200, 60, 10, 0, 2 * Math.PI);
+    pincel2.beginPath();//dibuja cabeza
+    pincel2.arc(200, 60,10, 0, 2 * Math.PI);
     pincel2.stroke();
 
     pincel2.beginPath();//dibuja cuerpo

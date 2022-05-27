@@ -14,7 +14,7 @@ main{
 }
 
     #logoAlura{
-        /*border:5px dotted rgb(244, 87, 87);*/
+
         box-sizing: content-box;
         margin-left:50px;
         margin-top: 50px;
@@ -22,7 +22,7 @@ main{
     }
 
     #mainDisplay{
-       /* border: 5px dashed orange ;*/
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -96,6 +96,12 @@ main{
 
         #nuevoJuegoDiv{
             visibility: collapse;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 25px;
         }
 
                 #mensajeGanador{
@@ -103,13 +109,19 @@ main{
                     font-family: 'Inter', sans-serif;
                     font-size: 24px;
                     color: green;
+                    position: absolute;
+                    top:25%;
+                    left: 60%;
                 }
 
                 #mensajeDerrota{
-                    visibility: collapse;
+                    visibility:collapse;
                     font-family: 'Inter', sans-serif;
                     font-size: 24px;
                     color: red;
+                    position: absolute;
+                    top:25%;
+                    left: 60%;
                 }
 
                 #muestraPalabraPantalla{
@@ -136,6 +148,7 @@ main{
                 #ahorcadoDiv{
                     visibility:collapse;
                     position: absolute;
+                    border: 5px solid red;
                     top: 0;
                     left: 42%;
                     height: 350px;
@@ -143,12 +156,51 @@ main{
                     background-color: none;
                 }
 
-                #canvasLines{
+          
+                #palabrasCorrectas{
+                    display: inline-block;
                     visibility: collapse;
-                    position: absolute;
-                    top: 65%;
-                    left: 30%;
+                    text-align: center;
+                    color:#0A3871;
+                    font-size: 56px;
+                    font-family: 'Inter', sans-serif;
+                    margin-top: 5%;
                 }
+
+                    .Correctas{
+                        display: inline-block;
+                        text-align: center;
+                        vertical-align: middle;
+                        margin-left:  30px;
+                        padding-bottom: 2%;
+                        width: 80px;
+                        height: 72px;
+                        border-bottom: 5px solid;
+                        color: #0A3871;
+                    }
+
+                #palabrasEquivocadas{
+                    visibility: collapse;
+                    color:#495057;
+                    font-size: 36px;
+                    font-family: 'Inter', sans-serif;
+                    text-align: center;
+                    margin-top: 3%;
+                }
+
+                    .equivocadas{
+                        padding-right: 20px;
+                    }
+
+                #nuevoDesistirDiv{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    margin-bottom: 5%;
+                }
+
+
 
 footer{
     display: flex;
