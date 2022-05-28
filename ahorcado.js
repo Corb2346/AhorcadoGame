@@ -1,4 +1,5 @@
 /*seleccionar elementos del html*/
+let palabrita; 
 let palabrasAhorcado = ["java","script","html","xbox","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend"];//arreglo con palabras iniciales
 //elementos del html
 let body = document.querySelector("body");
@@ -32,8 +33,22 @@ nuevoJuegoBtn.addEventListener("click",nuevoJuego);
 window.addEventListener('keydown', keyFunction)
 
 function keyFunction(event) {//detecta tecla presionada
+    let spans = document.querySelectorAll("#spanLetras");
     let recibeTecla = event.key;
-   console.log(recibeTecla);
+    let letraMayus = recibeTecla.toUpperCase();
+   console.log(letraMayus);
+   console.log(palabrita);
+
+   let acerto = false;
+   for(let i = 0; i<palabrita.length;i++){
+        if(letraMayus == palabrita[i]){
+            spans[i].innerHTML = letraMayus; 
+            acerto = true;
+        }
+   }
+
+   console.log("la letra " + letraMayus + " en la palabra " + palabrita + "¿existe? " + acerto);
+
    return recibeTecla;
   }
   
@@ -61,9 +76,8 @@ function displayIniciarJuego(){
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
 
-    let muestraCaracteres = palabraCaracteres(recibePalabra);
-   
-    muestraLineas(recibePalabra.toUpperCase());
+    ahorcadoGame(recibePalabra);
+
 
     ahorcadoDibujo();
     
@@ -75,20 +89,18 @@ function nuevoJuego(){
     
     palabrasCorrectas.style.visibility = "visible";
     palabrasEquivocadas.style.visibility = "visible";
-    
+    palabrasCorrectas.innerHTML = "";
     btnNuevoJuego();
     btnDesistir();
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
    
-    
-    let muestraCaracteres = palabraCaracteres(recibePalabra);
-   
-    let numeroLineas =  muestraLineas(recibePalabra.toUpperCase());
-    
-    console.log(numeroLineas);
+    ahorcadoGame(recibePalabra);
+  
+    ahorcadoDibujo();
 
+   
 }
 
 function diplayMenuAgregarPalabra(){
@@ -203,9 +215,16 @@ function returnMenu(){
     let ahorcadoDiv = document.getElementById("ahorcadoDiv");
     ahorcadoDiv.style.visibility="collapse";
 
-    
-    palabrasCorrectas.style.visibility = "collapse";
-    palabrasEquivocadas.style.visibility = "collapse";
+   
+    let palabrasCorrectas = document.getElementById("palabrasCorrectas");
+    /*palabrasCorrectas.style.visibility = "collapse";*/
+    palabrasCorrectas.remove();
+
+    let  palabrasEquivocadas = document.getElementById("palabrasEquivocadas");
+    /*palabrasEquivocadas.style.visibility = "collapse";*/
+    palabrasEquivocadas.remove();
+
+
 
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 
@@ -254,19 +273,16 @@ function reciveFrase(){
     let cancelarBtn= document.getElementById("cancelarBtn");
     cancelarBtn.style.visibility = "collapse";
 
-
     ahorcadoDiv.style.visibility = "visible";
+
+    palabrasCorrectas.style.visibility = "visible";
+    palabrasEquivocadas.style.visibility = "visible";
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
-   
-    let muestraCaracteres = palabraCaracteres(recibePalabra);
-    
-    muestraLineas(recibePalabra.toUpperCase());
 
-    
-    palabrasCorrectas.style.visibility = "visible";
-    palabrasEquivocadas.style.visibility = "visible";
+    palabrita = ahorcadoGame(recibePalabra);
+    console.log(palabrita);
 
     ahorcadoDibujo();
 
@@ -280,34 +296,25 @@ function reciveFrase(){
 function muestrPalabra(numberRandom){
     let numeroAleatorio = numberRandom;
     let palabra = palabrasAhorcado[numeroAleatorio];
-    console.log(palabra);
-    return palabra;
+    let palabraMayus = palabra.toUpperCase();
+    return palabraMayus;
 }
 
-function muestraLineas(palabra){
-    let i = 0;
-    let lineasPalabra = palabra.length;
-    console.log(lineasPalabra);
-    let palabraCaracteres = palabra.split('');
-    let palabraIngresada = "A";
-    do{
-    if(palabraIngresada == palabraCaracteres[i]){
-        console.log("palabra acertada");
-        i++;
-    } 
-    else {console.log("palabra erronea");
+function ahorcadoGame(palabra){
+    palabrita = palabra.split('');
+    console.log(palabrita);
+
+    palabrita.forEach(element => {
+        let palabraDisplay = document.createElement("span");
+    palabraDisplay.classList.add("Correctas");
+    palabraDisplay.setAttribute("id","spanLetras");
+    palabrasCorrectas.appendChild(palabraDisplay);
+    });
     
-    i++;}
-    }while(i<=palabraCaracteres.length);
-    console.log(palabraCaracteres);
-
-    return lineasPalabra;
-}
-
-function palabraCaracteres(palabra){
-    let caracteres = palabra.split('');
-    console.log(caracteres);
-    return caracteres;
+    let palabraEquivocadaDisplay = document.createElement("span");
+    palabraEquivocadaDisplay.classList.add("equivocadas");
+    palabrasEquivocadas.appendChild(palabraEquivocadaDisplay);
+  
 }
 
 function ahorcadoDibujo(){
@@ -385,3 +392,4 @@ function ahorcadoDibujo(){
     pincel2.lineTo(185,110);
     pincel2.stroke();
 }
+
