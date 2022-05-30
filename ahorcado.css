@@ -122,27 +122,6 @@ main{
                     left: 60%;
                 }
 
-               /* #muestraPalabraPantalla{
-                    visibility: collapse;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-25%);
-                    font-size: 80px;
-                    font-weight: 400;
-                    font-family: 'Inter', sans-serif;
-                    font-style: normal;
-                    color:#0A3871;
-                    background-color: #F3F5FC;
-                    border: 2px;
-                    border-top: none;
-                    border-left: none;
-                    border-right: none;
-                    outline: none;
-                    border-bottom: #0A3871;
-
-                }*/
-
                 #ahorcadoDiv{
                     visibility:collapse;
                     position: absolute;

@@ -1,6 +1,8 @@
 /*seleccionar elementos del html*/
 let palabrita; 
-let palabrasAhorcado = ["java","script","html","xbox","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend"];//arreglo con palabras iniciales
+let cantAciertos = 0;
+let cantErrores = 0;
+let palabrasAhorcado = ["java","script","html","xbox","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend","intel","ahorcado","security"];//arreglo con palabras iniciales
 //elementos del html
 let body = document.querySelector("body");
 let iniciarJuegoBtn = document.querySelector("#iniciarJuego");
@@ -15,6 +17,7 @@ let cancelarBtn = document.getElementById("cancelarBtn");
 let saveCancelNewWord = document.getElementById("saveCancelNewWord");
 let muestrPalabraPantalla = document.getElementById("muestraPalabraPantalla");
 
+let nuevoDesistirDiv = document.getElementById("nuevoDesistirDiv");
 let nuevoJuegoDiv = document.getElementById("nuevoJuegoDiv");
 let nuevoJuegoBtn = document.getElementById("nuevoJuegoBtn");
 let desistirBtn = document.getElementById("desistirBtn");
@@ -22,6 +25,8 @@ let ahorcadoDiv = document.getElementById("ahorcadoDiv");
 
 let palabrasCorrectas = document.getElementById("palabrasCorrectas");
 let palabrasEquivocadas = document.getElementById("palabrasEquivocadas");
+
+let mensajeDerrota = document.getElementById("mensajeDerrota");
 
 //action buttons
 iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
@@ -44,11 +49,29 @@ function keyFunction(event) {//detecta tecla presionada
         if(letraMayus == palabrita[i]){
             spans[i].innerHTML = letraMayus; 
             acerto = true;
+            cantAciertos++;
         }
+           
    }
 
    console.log("la letra " + letraMayus + " en la palabra " + palabrita + "¿existe? " + acerto);
+   if(acerto == false ){
+    let palabraEquivocadaDisplay = document.createElement("span");
+    palabraEquivocadaDisplay.classList.add("equivocadas");
+    palabraEquivocadaDisplay.innerHTML = letraMayus;
+    palabrasEquivocadas.appendChild(palabraEquivocadaDisplay);
+    cantErrores++;
+    `ahorcado${cantErrores}()`;
 
+   }
+
+   if(cantErrores === 9){
+    mensajeDerrota.style.visibility = "visible";
+    let palabraCorrecta = palabrita.join('');
+    mensajeDerrota.textContent = "Fin Del Juego !! la palabra era "+ palabraCorrecta ;
+   }
+  
+   
    return recibeTecla;
   }
   
@@ -61,6 +84,7 @@ function numeroAleatorio(){//funcion que devuelve un numero aleatorio tamaño ma
 }
 
 function displayIniciarJuego(){ 
+    
     console.log("ya sirvo tambien");
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
@@ -76,30 +100,33 @@ function displayIniciarJuego(){
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
 
-    ahorcadoGame(recibePalabra);
+    drawLines(recibePalabra);
 
 
-    ahorcadoDibujo();
+    ahorcado0();
     
 }
 
 function nuevoJuego(){
 
+    cantAciertos = 0;
+    cantErrores = 0;
     ahorcadoDiv.style.visibility = "visible";
     
     palabrasCorrectas.style.visibility = "visible";
     palabrasEquivocadas.style.visibility = "visible";
     palabrasCorrectas.innerHTML = "";
+    palabrasEquivocadas.innerHTML = "";
+    mensajeDerrota.style.visibility = "collapse";
     btnNuevoJuego();
     btnDesistir();
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
    
-    ahorcadoGame(recibePalabra);
+    drawLines(recibePalabra);
   
-    ahorcadoDibujo();
-
+    ahorcado0();
    
 }
 
@@ -215,17 +242,28 @@ function returnMenu(){
     let ahorcadoDiv = document.getElementById("ahorcadoDiv");
     ahorcadoDiv.style.visibility="collapse";
 
-   
     let palabrasCorrectas = document.getElementById("palabrasCorrectas");
-    /*palabrasCorrectas.style.visibility = "collapse";*/
-    palabrasCorrectas.remove();
+    palabrasCorrectas.style.visibility = "collapse";
 
+    let nuevoDesistirDiv = document.getElementById("nuevoDesistirDiv");
+    nuevoDesistirDiv.style.visibility = "collapse";
+   
     let  palabrasEquivocadas = document.getElementById("palabrasEquivocadas");
-    /*palabrasEquivocadas.style.visibility = "collapse";*/
-    palabrasEquivocadas.remove();
+    palabrasEquivocadas.style.visibility = "collapse";
 
+    let mensajeDerrota = document.getElementById("mensajeDerrota");
+    mensajeDerrota.style.visibility = "collapse";
 
+    let mensajeGanador = document.getElementById("mensajeGanador");
+    mensajeGanador.style.visibility = "collapse";
 
+    let nuevoJuegoDiv = document.getElementById("nuevoJuegoDiv");
+    nuevoJuegoDiv.style.visibility = "collapse";
+    
+    palabrasCorrectas.innerHTML = "";
+    palabrasEquivocadas.innerHTML = "";
+
+    iniciarJuegoBtn.addEventListener("click",displayIniciarJuego);
     agregarPalabraBtn.addEventListener("click",diplayMenuAgregarPalabra);
 
 }
@@ -280,15 +318,16 @@ function reciveFrase(){
 
     let recibePalabra = muestrPalabra(numeroAleatorio());
     console.log(recibePalabra);
+   
+    drawLines(recibePalabra);
+    /*let recibePalabra = muestrPalabra(numeroAleatorio());
+    console.log(recibePalabra);
 
-    palabrita = ahorcadoGame(recibePalabra);
-    console.log(palabrita);
+    palabrita = drawLines(recibePalabra);
+    console.log(palabrita);*/
 
-    ahorcadoDibujo();
-
-    } 
-
-
+    ahorcado0();
+    }
 }
 
 //funcion que muestra en pantalla letra obtenida del arreglo
@@ -300,7 +339,7 @@ function muestrPalabra(numberRandom){
     return palabraMayus;
 }
 
-function ahorcadoGame(palabra){
+function drawLines(palabra){
     palabrita = palabra.split('');
     console.log(palabrita);
 
@@ -310,14 +349,10 @@ function ahorcadoGame(palabra){
     palabraDisplay.setAttribute("id","spanLetras");
     palabrasCorrectas.appendChild(palabraDisplay);
     });
-    
-    let palabraEquivocadaDisplay = document.createElement("span");
-    palabraEquivocadaDisplay.classList.add("equivocadas");
-    palabrasEquivocadas.appendChild(palabraEquivocadaDisplay);
-  
+
 }
 
-function ahorcadoDibujo(){
+function ahorcado0(){
 
     let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
     let pincel2 = ahoracadoCanvas.getContext("2d");
@@ -328,68 +363,113 @@ function ahorcadoDibujo(){
     pincel2.moveTo(50,130);
     pincel2.lineTo(250,130);
     pincel2.stroke();
+    }
 
-    pincel2.beginPath();
+function ahoracado1(){
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja poste
+    pincel2.lineWidth = 2;
     pincel2.lineWidth = 5;//dibuja torredel ahorcado
     pincel2.lineCap = "round";
     pincel2.beginPath();
     pincel2.moveTo(98,128);
     pincel2.lineTo(100,35);
     pincel2.stroke();
+    }
 
-    pincel2.beginPath();//dibuja brazo de torre
+function ahorcado2(){    
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja brazo torre
+    pincel2.lineWidth = 2;
     pincel2.lineWidth = 2;
     pincel2.lineCap = "round";
     pincel2.beginPath();
     pincel2.moveTo(100,34);
     pincel2.lineTo(200,34);
     pincel2.stroke();
+    }
 
-    pincel2.beginPath();//dibuja lazo
-    pincel2.lineWidth = 4;
+    function ahorcado3(){    
+        let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+        let pincel2 = ahoracadoCanvas.getContext("2d");
+        pincel2.strokeStyle = '#0A3871'; // dibuja lazo
+        pincel2.lineWidth = 2;
+        pincel2.beginPath();
     pincel2.lineCap = "round";
     pincel2.moveTo(200,35);
     pincel2.lineTo(200,50);
     pincel2.stroke();
+    }
 
+function ahorcado4(){
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja cabeza
+    pincel2.lineWidth = 2;
     pincel2.lineWidth = 3;
     pincel2.beginPath();//dibuja cabeza
     pincel2.arc(200, 60,10, 0, 2 * Math.PI);
     pincel2.stroke();
+    }
 
+function ahorcado5(){
+
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja cabeza
     pincel2.beginPath();//dibuja cuerpo
     pincel2.lineWidth = 4;
     pincel2.lineCap = "round";
     pincel2.moveTo(200,70);
     pincel2.lineTo(200,100);
     pincel2.stroke();
+    }
 
-    pincel2.beginPath();//dibuja brazo izquierdo
+function ahorcado6(){
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja brazo izquierdo
     pincel2.lineWidth = 4;
     pincel2.lineCap = "round";
     pincel2.moveTo(200,75);
     pincel2.lineTo(185,85);
     pincel2.stroke();
-
+    }
+    
+function ahorcado7(){
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja brazo izquierdo
     pincel2.beginPath();//dibuja brazo derecho
     pincel2.lineWidth = 4;
     pincel2.lineCap = "round";
     pincel2.moveTo(200,75);
     pincel2.lineTo(215,85);
     pincel2.stroke();
+    }
 
+function ahorcado8(){
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja brazo izquierdo
     pincel2.beginPath();//dibuja pata derecha
     pincel2.lineWidth = 4;
     pincel2.lineCap = "round";
     pincel2.moveTo(200,100);
     pincel2.lineTo(215,110);
     pincel2.stroke();
+    }
 
+    function ahorcado9(){
+    let ahoracadoCanvas  = document.getElementById("ahorcadoDiv");
+    let pincel2 = ahoracadoCanvas.getContext("2d");
+    pincel2.strokeStyle = '#0A3871'; // dibuja brazo izquierdo
     pincel2.beginPath();//dibuja pata izquierda
     pincel2.lineWidth = 4;
     pincel2.lineCap = "round";
     pincel2.moveTo(200,100);
     pincel2.lineTo(185,110);
     pincel2.stroke();
-}
-
+    }
