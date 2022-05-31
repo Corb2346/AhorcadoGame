@@ -73,6 +73,8 @@ function keyFunction(event) {//detecta tecla presionada
     mensajeDerrota.style.visibility = "visible";
     let palabraCorrecta = palabrita.join('');
     mensajeDerrota.textContent = "Fin Del Juego !! la palabra era "+ palabraCorrecta ;
+   } else if(cantAciertos == palabrita.length){
+    mensajeGanador.style.visibility = "visible";
    }
   
    
@@ -112,6 +114,8 @@ function nuevoJuego(){
     cantAciertos = 0;
     cantErrores = 0;
     ahorcadoDiv.style.visibility = "visible";
+    mensajeGanador.style.visibility = "collapse";
+    mensajeDerrota.style.visibility ="collapse";
     
     palabrasCorrectas.style.visibility = "visible";
     palabrasEquivocadas.style.visibility = "visible";
