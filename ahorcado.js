@@ -40,21 +40,14 @@ desistirBtn.addEventListener("click",returnMenu);
 guardarRemplazarbtn.addEventListener("click",reciveFrase);
 inputFrases.addEventListener("click",inputWord);
 nuevoJuegoBtn.addEventListener("click",nuevoJuego);
-window.addEventListener('keydown', keyFunction)
 
-
-function unableKeys(event){
-    event.preventDefault();
-    
-
-}
+window.addEventListener('keydown', keyFunction);
 
 
 function keyFunction(event) {//detecta tecla presionada
     let spans = document.querySelectorAll("#spanLetras");
     let recibeTecla = event.key;
     let recibeCodigoTecla = event.keyCode;
-    let comparador = "";
     let letraMayus = recibeTecla.toUpperCase();
    console.log(letraMayus);
    console.log(palabrita);
@@ -95,10 +88,11 @@ function keyFunction(event) {//detecta tecla presionada
     mensajeDerrota.style.visibility = "visible";
     let palabraCorrecta = palabrita.join('');
     mensajeDerrota.textContent = "Fin Del Juego !! la palabra era "+ palabraCorrecta ;
-    window.addEventListener("keydown",unableKeys);
+    window.removeEventListener('keydown', keyFunction);
 
    } else if(cantAciertos == palabrita.length){
     mensajeGanador.style.visibility = "visible";
+    window.removeEventListener('keydown', keyFunction);
    }
     } else {
     console.log("no es letra");
@@ -131,12 +125,15 @@ function displayIniciarJuego(){
     console.log(recibePalabra);
 
     drawLines(recibePalabra);
+
+    window.addEventListener('keydown', keyFunction);
 }
 
 function nuevoJuego(){
 
     cantAciertos = 0;
     cantErrores = 0;
+    caracteresIngresados = [];
     ahorcadoDiv.style.visibility = "visible";
     mensajeGanador.style.visibility = "collapse";
     mensajeDerrota.style.visibility ="collapse";
@@ -158,13 +155,14 @@ function nuevoJuego(){
     imagen = document.getElementById("imagen");
     imagen.src = source;
 
+    window.addEventListener('keydown', keyFunction);
 }
 
 function diplayMenuAgregarPalabra(){
     console.log("ya sirvo");
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
-
+    window.removeEventListener("keydown", keyFunction);
     inputFrase();
     adviceMessage()
     btnGuardarReemplazar();
@@ -301,7 +299,7 @@ function returnMenu(){
     cantErrores = 0;
     imagen = document.getElementById("imagen");
     imagen.src = source;
-
+    caracteresIngresados = [];
 
 }
 
@@ -357,6 +355,8 @@ function reciveFrase(){
     console.log(recibePalabra);
    
     drawLines(recibePalabra);
+
+    window.addEventListener('keydown', keyFunction);
   
     }
 }
