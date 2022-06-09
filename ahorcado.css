@@ -123,9 +123,8 @@ main{
                 }
 
                 #ahorcadoDiv{
-                    visibility:visible;
+                    visibility:collapse;
                     position: absolute;
-                    border: 5px solid red;
                     top: 0;
                     left: 42%;
                     height: 350px;

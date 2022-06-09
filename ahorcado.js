@@ -2,7 +2,9 @@
 let palabrita; 
 let cantAciertos = 0;
 let cantErrores = 0;
-let palabrasAhorcado = ["java","script","html","xbox","css","alura","odin","oracle","react","visual","mexico","python","frontend","backend","intel","ahorcado","security"];//arreglo con palabras iniciales
+let enable =false; 
+let caracteresIngresados = [];
+let palabrasAhorcado = ["java","script","html","xbox","windows","alura","odin","oracle","react","visual","mexico","python","frontend","backend","intel","ahorcado","security"];//arreglo con palabras iniciales
 //elementos del html
 let body = document.querySelector("body");
 let iniciarJuegoBtn = document.querySelector("#iniciarJuego");
@@ -40,21 +42,41 @@ inputFrases.addEventListener("click",inputWord);
 nuevoJuegoBtn.addEventListener("click",nuevoJuego);
 window.addEventListener('keydown', keyFunction)
 
+
+function unableKeys(event){
+    event.preventDefault();
+    
+
+}
+
+
 function keyFunction(event) {//detecta tecla presionada
     let spans = document.querySelectorAll("#spanLetras");
     let recibeTecla = event.key;
+    let recibeCodigoTecla = event.keyCode;
+    let comparador = "";
     let letraMayus = recibeTecla.toUpperCase();
    console.log(letraMayus);
    console.log(palabrita);
 
-   let acerto = false;
-   for(let i = 0; i<palabrita.length;i++){
-        if(letraMayus == palabrita[i]){
-            spans[i].innerHTML = letraMayus; 
-            acerto = true;
+    if(recibeCodigoTecla >=65 && recibeCodigoTecla <= 90){//VALIDA QUE TECLA PRESIONADA SEA UNA LETRA Y NO UN NUMERO U OTRO CARACTER. 
+        if(caracteresIngresados.includes(letraMayus)){//si detecta una palabra repetida no hace nada
+            return null;
+        } else { //de lo contrario la agrega en el arreglo 
+
+        caracteresIngresados.push(letraMayus);
+        console.log(caracteresIngresados);
+        
+        }
+       
+   let acerto = false; 
+   for(let i = 0; i<palabrita.length;i++){//con la palabra recorre el arreglo a identificar
+        if(letraMayus == palabrita[i]){ //si es igual 
+            spans[i].innerHTML = letraMayus;  // imprime la palabra en el lugar
+            acerto = true; 
             cantAciertos++;
         }
-           
+
    }
 
    console.log("la letra " + letraMayus + " en la palabra " + palabrita + "¿existe? " + acerto);
@@ -73,14 +95,15 @@ function keyFunction(event) {//detecta tecla presionada
     mensajeDerrota.style.visibility = "visible";
     let palabraCorrecta = palabrita.join('');
     mensajeDerrota.textContent = "Fin Del Juego !! la palabra era "+ palabraCorrecta ;
+    window.addEventListener("keydown",unableKeys);
+
    } else if(cantAciertos == palabrita.length){
     mensajeGanador.style.visibility = "visible";
    }
-  
-   
-   return recibeTecla;
+    } else {
+    console.log("no es letra");
+    }
   }
-  
  
 
 function numeroAleatorio(){//funcion que devuelve un numero aleatorio tamaño maximo del arreglo
@@ -92,6 +115,7 @@ function numeroAleatorio(){//funcion que devuelve un numero aleatorio tamaño ma
 function displayIniciarJuego(){ 
     
     console.log("ya sirvo tambien");
+    enable = true;
     agregarPalabraBtn.style.visibility = "collapse";
     iniciarJuegoBtn.style.visibility = "collapse";
 
