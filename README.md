@@ -17,7 +17,13 @@ Sigue jugando:
 
 ![ahorcado-perdiste](https://user-images.githubusercontent.com/57958376/173089231-9c9104f3-7ab4-4431-a548-6235ba0f2366.png)
 
-![insignia2-ahorcado-oracle-alura](https://user-images.githubusercontent.com/57958376/173094251-ddb31b55-ef6f-4900-bf47-27d20d36851e.png )
+![insignia2-ahorcado_oracle_alura](https://user-images.githubusercontent.com/57958376/173096717-2a90c38c-c672-4df8-b044-4f4de95cc7d9.png)
 
 
-Hecho por BCR - Desarrollado con Javascript-HTML-CSS
+# Hecho por BCR - 
+
+# Desarrollado con Javascript-CSS-HTML
+
+![javascript_logo](https://user-images.githubusercontent.com/57958376/173097900-543233ad-d93d-46b7-8cbd-9acd9d2eb102.png) 
+![css3_logo](https://user-images.githubusercontent.com/57958376/173098182-338187e9-0a8b-4607-8621-dbdebe2e5944.png)
+![html_logo](https://user-images.githubusercontent.com/57958376/173098615-22fe34d7-400b-4b29-b4f9-4fca788829ab.png)
