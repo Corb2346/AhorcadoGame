@@ -17,4 +17,7 @@ Sigue jugando:
 
 ![ahorcado-perdiste](https://user-images.githubusercontent.com/57958376/173089231-9c9104f3-7ab4-4431-a548-6235ba0f2366.png)
 
-Hecho por BCR
+![insignia2-ahorcado-oracle-alura](https://user-images.githubusercontent.com/57958376/173094251-ddb31b55-ef6f-4900-bf47-27d20d36851e.png )
+
+
+Hecho por BCR - Desarrollado con Javascript-HTML-CSS
