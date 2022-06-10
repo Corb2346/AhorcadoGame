@@ -1,5 +1,5 @@
 ![Vector_logo](https://user-images.githubusercontent.com/57958376/173087837-38b84307-b368-45c4-b6a0-3fdc8b919214.png) 
-# Ahoracado Game propuesto por AluraChallenge - Oracle 
+# Ahoracado Game propuesto por Alura - Oracle 
 
 Menu principal:
 
