@@ -317,8 +317,16 @@ if(event.pointerId === 1){
 
 function reciveFrase(){
     let palabra = inputFrases.value;
+    let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
     console.log(palabra);
-    if(palabra === "Ingresa Palabra aqui" || palabra === ""){
+    let validacion = format.test(palabra);
+    console.log(validacion);
+    let tieneEspacio = /\s/.test(palabra);
+    console.log(tieneEspacio );
+    let tieneNumeros = /\d/.test(palabra);
+   
+
+    if(palabra === "Ingresa Palabra aqui" || palabra === "" || validacion === true || tieneEspacio == true || tieneNumeros == true ){
         inputFrases.value = "Ingresa Palabra aqui";
         console.log("no entro en el array");
     } else 
