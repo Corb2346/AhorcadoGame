@@ -94,6 +94,12 @@ main{
                 color:#0A3871;
             }
 
+            #saveCancelBtn{
+                visibility: collapse;
+                display: flex;
+                flex-wrap:wrap;
+            }
+
         #nuevoJuegoDiv{
             visibility: collapse;
             display: flex;
