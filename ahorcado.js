@@ -204,8 +204,14 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
         guardarRemplazarbtn.style.left="5%";
         cancelarBtn.style.top ="75%";
         cancelarBtn.style.left="53%";
-    }
+    } else
 
+    if(screen.width <= 649 || screen.width >= 10){
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="15%";
+        cancelarBtn.style.top ="88%";
+        cancelarBtn.style.left="15%";
+    }
   
     cancelarBtn = document.getElementById("cancelarBtn");
     cancelarBtn.classList.add("greyButton");
@@ -246,6 +252,11 @@ function adviceMessage(){
     if(screen.width <= 849 || screen.width >= 650){
         adviceDiv.style.top ="70%";
         adviceDiv.style.left ="20%";
+    } else
+
+    if(screen.width <= 649 || screen.width >= 100){
+        adviceDiv.style.top ="70%";
+        adviceDiv.style.left ="5%";
     }
 
 
