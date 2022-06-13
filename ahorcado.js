@@ -176,15 +176,34 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
     guardarRemplazarbtn.classList.add("sizeButton");
     guardarRemplazarbtn.style.visibility ="visible";
     guardarRemplazarbtn.style.position = "absolute"
-    guardarRemplazarbtn.style.top ="75%";
-    guardarRemplazarbtn.style.left="28%";
+   
+    if(screen.width >= 1386){
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="28%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="53%";
+    } else
 
-    
+    if(screen.width <= 1385 || screen.width >= 1024 ){
+
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="25%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="50%";
+    }
+
+    if(screen.width <= 1023 || screen.width >= 650){
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="15%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="55%";
+    }
+
+  
     cancelarBtn = document.getElementById("cancelarBtn");
     cancelarBtn.classList.add("greyButton");
     cancelarBtn.classList.add("sizeButton");
     cancelarBtn.style.position = "absolute"
-    cancelarBtn.style.top ="75%";
     cancelarBtn.style.visibility ="visible";
     
 
@@ -312,7 +331,6 @@ if(event.pointerId === 1){
     console.log("detecto click");
     document.getElementById("inputFrase").value="";
 } 
-
 }
 
 function reciveFrase(){
