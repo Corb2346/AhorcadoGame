@@ -43,6 +43,12 @@ nuevoJuegoBtn.addEventListener("click",nuevoJuego);
 
 window.addEventListener('keydown', keyFunction);
 
+if(screen.width <= 1386){
+    let inputCellCharacters = document.getElementById("inputCellCharacters");
+    inputCellCharacters.style.display = "inline";
+    console.log("ya esta habilitado");
+}
+
 
 function keyFunction(event) {//detecta tecla presionada
     let spans = document.querySelectorAll("#spanLetras");
@@ -448,6 +454,8 @@ function drawLines(palabra){
     palabraDisplay.classList.add("Correctas");
     palabraDisplay.setAttribute("id","spanLetras");
     palabrasCorrectas.appendChild(palabraDisplay);
+
+
     });
 
 }

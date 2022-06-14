@@ -72,9 +72,14 @@ main{
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+          /*  justify-content: space-between;
+            align-items: center;*/
         }
+
+            #inputCellCharacters{
+                border: 5px solid goldenrod;
+               display: none; 
+            }
 
             #inputFrase{
                 visibility:collapse;
@@ -203,3 +208,6 @@ footer{
     padding-left: 5%;
 }
 
+.ocultar{
+    display: none;
+}
