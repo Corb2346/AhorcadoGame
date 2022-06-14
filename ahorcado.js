@@ -215,9 +215,9 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
 
     if(screen.width <= 649 && screen.width >= 10){
         body.style.backgroundColor="yellow";
-        guardarRemplazarbtn.style.top ="60%";
+        guardarRemplazarbtn.style.top ="50%";
         guardarRemplazarbtn.style.left="15%";
-        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.top ="70%";
         cancelarBtn.style.left="15%";
     }
   
@@ -245,6 +245,12 @@ function inputFrase(){
     inputFrases.style.position ="absolute";
     inputFrases.style.top = "20%";
     inputFrases.style.left ="28%";
+
+    if(screen.width <= 649 || screen.width >= 100){
+        inputFrases.style.top = "20%";
+        inputFrases.style.left ="20%";
+    }
+
 }
 
 function adviceMessage(){
@@ -267,7 +273,7 @@ function adviceMessage(){
     } else
 
     if(screen.width <= 649 || screen.width >= 100){
-        adviceDiv.style.top ="50%";
+        adviceDiv.style.top ="45%";
         adviceDiv.style.left ="5%";
     }
 
