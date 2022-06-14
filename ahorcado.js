@@ -244,11 +244,11 @@ function inputFrase(){
     inputFrases.style.fontSize ="32px";
     inputFrases.style.position ="absolute";
     inputFrases.style.top = "20%";
-    inputFrases.style.left ="28%";
+    inputFrases.style.left = "28%";  
 
-    if(screen.width <= 649 || screen.width >= 100){
+    if(screen.width <= 649 && screen.width >= 100){
         inputFrases.style.top = "20%";
-        inputFrases.style.left ="20%";
+        inputFrases.style.left = "20%";
     }
 
 }
@@ -267,12 +267,12 @@ function adviceMessage(){
         adviceDiv.style.left ="30%";
     } else
 
-    if(screen.width <= 849 || screen.width >= 650){
+    if(screen.width <= 849 && screen.width >= 650){
         adviceDiv.style.top ="70%";
         adviceDiv.style.left ="20%";
     } else
 
-    if(screen.width <= 649 || screen.width >= 100){
+    if(screen.width <= 649 && screen.width >= 100){
         adviceDiv.style.top ="60%";
         adviceDiv.style.left ="5%";
     }
