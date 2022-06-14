@@ -215,9 +215,9 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
 
     if(screen.width <= 649 && screen.width >= 10){
         body.style.backgroundColor="yellow";
-        guardarRemplazarbtn.style.top ="50%";
+        guardarRemplazarbtn.style.top ="70%";
         guardarRemplazarbtn.style.left="15%";
-        cancelarBtn.style.top ="70%";
+        cancelarBtn.style.top ="80%";
         cancelarBtn.style.left="15%";
     }
   
@@ -273,7 +273,7 @@ function adviceMessage(){
     } else
 
     if(screen.width <= 649 || screen.width >= 100){
-        adviceDiv.style.top ="45%";
+        adviceDiv.style.top ="55%";
         adviceDiv.style.left ="5%";
     }
 
