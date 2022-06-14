@@ -177,14 +177,54 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
     guardarRemplazarbtn.style.visibility ="visible";
     guardarRemplazarbtn.style.position = "absolute"
     guardarRemplazarbtn.style.top ="75%";
-    guardarRemplazarbtn.style.left="28%";
+        guardarRemplazarbtn.style.left="28%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="53%";
+   
+    if(screen.width >= 1386){
+        body.style.backgroundColor="blue";
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="28%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="53%";
+    } else
 
-    
+    if(screen.width <= 1385 && screen.width >= 1024 ){
+        body.style.backgroundColor="red";
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="25%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="50%";
+    } else
+
+    if(screen.width <= 1023 &&screen.width >= 850){
+        body.style.backgroundColor="orange";
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="15%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="55%";
+    } else
+
+    if(screen.width <= 849 && screen.width >= 650){
+        body.style.backgroundColor="green";
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="5%";
+        cancelarBtn.style.top ="75%";
+        cancelarBtn.style.left="53%";
+    } else
+
+    if(screen.width <= 649 && screen.width >= 10){
+        body.style.backgroundColor="yellow";
+        guardarRemplazarbtn.style.top ="75%";
+        guardarRemplazarbtn.style.left="15%";
+        cancelarBtn.style.top ="88%";
+        cancelarBtn.style.left="15%";
+    }
+  
     cancelarBtn = document.getElementById("cancelarBtn");
     cancelarBtn.classList.add("greyButton");
     cancelarBtn.classList.add("sizeButton");
     cancelarBtn.style.position = "absolute"
-    cancelarBtn.style.top ="75%";
     cancelarBtn.style.visibility ="visible";
     
 
@@ -211,11 +251,27 @@ function adviceMessage(){
 
     adviceDiv.style.visibility = "visible";
     adviceDiv.style.position ="absolute";
-    adviceDiv.style.top ="70%";
-    adviceDiv.style.left ="30%";
+    
     adviceDiv.style.opacity=".8";
     adviceDiv.style.color="#495057";
     adviceDiv.style.fontFamily ="'Inter', sans-serif";
+
+    if(screen.width >= 850){
+        adviceDiv.style.top ="70%";
+        adviceDiv.style.left ="30%";
+    } else
+
+    if(screen.width <= 849 || screen.width >= 650){
+        adviceDiv.style.top ="70%";
+        adviceDiv.style.left ="20%";
+    } else
+
+    if(screen.width <= 649 || screen.width >= 100){
+        adviceDiv.style.top ="70%";
+        adviceDiv.style.left ="5%";
+    }
+
+
 
 }
 
@@ -312,7 +368,6 @@ if(event.pointerId === 1){
     console.log("detecto click");
     document.getElementById("inputFrase").value="";
 } 
-
 }
 
 function reciveFrase(){

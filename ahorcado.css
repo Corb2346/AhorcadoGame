@@ -2,8 +2,8 @@ body{
     background-color: #F3F5FC;
     margin: 0;
     padding: 0;
-    height: auto;
-    width:auto;
+    height: 670px;
+    width: auto;
     }
 
 main{
@@ -19,6 +19,7 @@ main{
         margin-left:50px;
         margin-top: 50px;
         position: relative;
+        height: auto;
     }
 
     #mainDisplay{
@@ -27,8 +28,8 @@ main{
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        flex-wrap: wrap;
         height: 670px;
-
         gap: 20px;
     }
 
@@ -93,11 +94,18 @@ main{
                 color:#0A3871;
             }
 
+            #saveCancelBtn{
+                visibility: collapse;
+                display: flex;
+                flex-wrap:wrap;
+            }
+
         #nuevoJuegoDiv{
             visibility: collapse;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
             flex-direction: column;
             justify-content: space-between;
             gap: 25px;
@@ -188,7 +196,7 @@ footer{
     justify-content: center;
     align-items: center;
     font-family: 'Inter', sans-serif;
-
+    height: auto;
     font-weight: bold;
     font-size: 28px;
     gap: 15px;
