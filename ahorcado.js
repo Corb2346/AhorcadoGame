@@ -209,7 +209,7 @@ function btnGuardarReemplazar(){ // se crea u boton al momento de seleccionar la
         body.style.backgroundColor="green";
         guardarRemplazarbtn.style.top ="75%";
         guardarRemplazarbtn.style.left="5%";
-        cancelarBtn.style.top ="88%";
+        cancelarBtn.style.top ="75%";
         cancelarBtn.style.left="53%";
     } else
 
